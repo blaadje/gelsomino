@@ -1,18 +1,20 @@
 import './style.css'
 import axios from 'axios'
-import Modal from './Modal'
+import Modal from '@/containers/Modal'
+import Cups from '@/containers/Cups'
 
 export default {
   data() {
     return {
       bonneteauIndex: 0,
-      cupAmount: [1, 2, 3],
+      cupAmount: [1, 2, 3], // not cool here i'd rather having a single number and map the number in the render
       cupSelected: null,
       win: null,
       winAmount: 0,
       looseAmount: 0
     }
   },
+
   beforeMount () {
     this.fetchCup()
   },
@@ -30,6 +32,7 @@ export default {
     },
     chooseCup (index) {
       this.cupSelected = index
+
       if (this.bonneteauIndex === this.cupSelected) {
         this.winAmount++
         this.win = true
@@ -46,33 +49,18 @@ export default {
           <div>Wins: {this.winAmount}</div>
           <div>Looses: {this.looseAmount}</div>
         </div>
+
         <Modal 
           win={this.win}
           resetCup={this.resetCup}
         />
-        <div class='Cup-wrapper'>
-          {this.cupAmount.map(({}, index) => {
-            if (index === this.bonneteauIndex) {
-              return (
-                <div class='CupWinning-wrapper'>
-                  <div class='Cup-ball' />
-                  <img
-                    class={`${this.cupSelected === index ? 'isSelected' : ''} GameWrapper-cup`}
-                    onClick={() => this.chooseCup(index)}
-                    src='https://2100.intervarsity.org/sites/2100/files/red_cup_0.png'
-                  />
-                </div>
-              )
-            }
-            return (
-              <img 
-                class={`${this.cupSelected === index ? 'isSelected' : ''} GameWrapper-cup`}
-                onClick={() => this.chooseCup(index)}
-                src='https://2100.intervarsity.org/sites/2100/files/red_cup_0.png' 
-              />
-            )
-          })}
-        </div>
+
+        <Cups 
+          cupAmount={this.cupAmount}
+          bonneteauIndex={this.bonneteauIndex}
+          cupSelected={this.cupSelected}
+          chooseCup={this.chooseCup}
+      />
       </div>
     )
   }
