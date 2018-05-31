@@ -1,0 +1,100 @@
+.Game-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+}
+
+.CupWinning-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.Cup-ball {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background: blue;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.GameWrapper-cup {
+  transition: .3s all ease-in-out;
+  transform: rotate(180deg);
+  height: 100px;
+}
+
+.isSelected {
+  transform: rotate(200deg) translateY(40px) !important;
+}
+
+.GameWrapper-cup:hover {
+  transform: rotate(185deg) translateY(10px);
+  cursor: pointer;
+}
+
+.Game-win, .Game-loose {
+  position: fixed;
+  top: 0;
+  opacity: .9;
+  z-index: 99999;
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  font-size: 4em;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Game-win {
+  background: rgb(93, 206, 93);
+}
+
+.Game-loose {
+  background: rgb(219, 86, 86);
+}
+
+.Game-scores {
+  background: rgb(55, 128, 170);
+  opacity: .8;
+  margin-right: 5em;
+  color: white;
+  padding: 1em;
+  border-radius: .2em;
+}
+
+.Button {
+  margin-top: 1em;
+  font-size: .8em;
+  border: 0;
+  padding: .3em;
+  color: rgb(105, 104, 104);
+  background:white;
+  border-radius: .2em;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: .3s ease-in-out;
+}
+
+.fade-enter {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+
+.fade-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-100px)
+}
